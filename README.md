@@ -18,13 +18,16 @@ const client = new rdhClientSocket({
     app_key: 'APP_key'
 });
 
+const client_first_channel = client.channel('channelName');
+
 // Subscribe to a channel and listen for an event
-client.channel('channelName').on('eventName', (data) => {
+client_first_channel.on('eventName', (data) => {
     console.log(data.message);
 });
 
 // Emit a custom event with data
-client.emit('myEvent', mydata);
+client_first_channel.emit('myEvent', mydata);
+
 ```
 eplace `APP_ID` and `APP_key` with your actual application ID and key. Make sure to customize the channel name, event name, and data according to your application's requirements.
 

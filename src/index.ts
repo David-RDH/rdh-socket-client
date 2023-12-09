@@ -1,3 +1,4 @@
+import Channel from "./Channel";
 import { Options } from "./types";
 import io, { Socket } from 'socket.io-client'; 
 
@@ -20,20 +21,8 @@ export default class RdhClientSocket {
         });
     }
 
-    channel(channel_name: string): this {
+    channel(channel_name: string): Channel {
         let finalChannelName = this.options.app_id+'_'+channel_name;
-        this.socket.emit('subscribe', {
-            channel: finalChannelName
-        })
-        return this;
-    }
-
-    on(event_name: string, callback: (...args: any[]) => void) {
-        this.socket.on(event_name, callback);
-    }
-
-    emit(event_name: string, data: any[]) {
-        // this.socket.on(event_name, callback);
-        this.socket.emit(event_name, data)
+        return new Channel(finalChannelName, this.socket);
     }
 }
