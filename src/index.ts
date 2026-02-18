@@ -5,8 +5,8 @@ import io, { Socket } from 'socket.io-client';
 export default class RdhClientSocket {
     private options: Options;
     private ws_host: string;
-    private socket: Socket;
-$
+    private socket!: Socket;
+
     constructor(options: Options) {
 
         if (!options.app_ws) {
