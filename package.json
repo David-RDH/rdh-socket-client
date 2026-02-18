@@ -1,6 +1,6 @@
 {
   "name": "rdh-socket-client",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Client Socket for rdh-socket",
   "main": "src/index.ts",
   "type": "module",
