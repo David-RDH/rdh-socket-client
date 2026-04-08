@@ -10,7 +10,7 @@ export default class RdhClientSocket {
     constructor(options: Options) {
 
         if (!options.app_ws) {
-            this.ws_host = "https://rdh-websocket.onrender.com"
+            this.ws_host = "http://socket.archipoint.mg:10028"
         } else {
             this.ws_host = options.app_ws
         }
