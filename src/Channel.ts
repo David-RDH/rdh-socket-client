@@ -21,9 +21,13 @@ export default class Channel {
         this.socket.on(real_event, callback);
     }
 
-    off(event_name: string, callback: (...args: any[]) => void) {
+    off(event_name: string) {
         const real_event = this.channel + "." + event_name;
-        this.socket.off(real_event, callback);
+        this.socket.off(real_event);
+    }
+
+    removeAllListeners() {
+        this.socket.removeAllListeners();
     }
 
     emit(event_name: string, data: any[]) {
