@@ -2,27 +2,29 @@ name: Publish Package to npmjs
 
 on:
   release:
-    types: [published]
+    types: [published] # Déclenche le script lors de la publication d'une Release GitHub
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-    
     steps:
+      # 1. Récupérer le code source
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # 2. Configurer l'environnement Node.js et l'URL du registre npm
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
 
+      # 3. Installer les dépendances proprement
       - name: Install dependencies
         run: npm ci
 
+      # 4. Publier sur NPM en injectant le token d'authentification
       - name: Publish to NPM
-        run: npm publish --provenance --access public
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
